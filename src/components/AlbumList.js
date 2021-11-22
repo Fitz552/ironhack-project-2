@@ -1,6 +1,6 @@
 function AlbumList () {
     return(
-        <h1>This is the AlbumList</h1>
+        <h1>I should list a bunch of albuns.</h1>
     )
 }
 
