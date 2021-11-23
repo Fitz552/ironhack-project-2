@@ -1,7 +1,31 @@
+import axios from 'axios'
+import {useEffect, useState} from "react"
+import Navbar from "./Navbar"
+
 function HomePage () {
-    return (
-        <h1>test</h1>
-    )
+    const [state, setState] = useState([]);
+
+    useEffect(() =>{
+    async function fetchTopics(){
+        try {
+            const response = await axios.post("https://ironrest.herokuapp.com/reviews", {'test': 'ok'})
+            console.log(response)
+            setState([...response.data]); 
+        } catch (err) {
+                console.error(err);
+            }
+            
+    }                   
+   
+    fetchTopics(); 
+}, []);
+return (
+    <div>
+        <Navbar />
+        <h1>This is HomePage</h1>
+    </div>
+)
 }
 
-export default HomePage
+
+export default HomePage;
