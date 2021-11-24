@@ -15,6 +15,7 @@ function AlbumList () {
             // chamei a função setAlbuns para alterar o state de albuns para o valor recebido após a resposta da API
             setAlbuns(response.data)
             console.log(albuns)
+            console.log(albuns[0])
 
         }
         )
@@ -26,6 +27,7 @@ function AlbumList () {
             <Navbar />
         
             <h1>This is Album List</h1>
+            
 
             {
                 albuns.map((album) => {
@@ -37,6 +39,7 @@ function AlbumList () {
                                 <p>{album.artists[0].name}</p>
                             </Link>
                         </div>
+                        
                     )
                 }
             
