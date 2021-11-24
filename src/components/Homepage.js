@@ -1,18 +1,31 @@
-import axios from "axios"
+import axios from 'axios'
+import {useEffect, useState} from "react"
+import Navbar from "./Navbar"
 
 function HomePage () {
-    axios.post("https://ironrest.herokuapp.com/reviews", "Só para mostrar como whatever")
-    .then(response => {
-        console.log(response)
-    })
-    .catch(error => {
-        console.log(error)
-    })
+    const [state, setState] = useState([]);
 
-
-    return (
-        <h1>test</h1>
-    )
+    useEffect(() =>{
+    async function fetchTopics(){
+        try {
+            //const response = await axios.post("https://ironrest.herokuapp.com/albuns", {})
+            //console.log(response)
+            //setState([...response.data]); 
+        } catch (err) {
+               // console.error(err);
+        }
+            
+    }                   
+   
+    fetchTopics(); 
+}, []);
+return (
+    <div>
+        <Navbar />
+        <h1>This is HomePage</h1>
+    </div>
+)
 }
 
-export default HomePage
+
+export default HomePage;
