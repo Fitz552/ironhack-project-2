@@ -2,13 +2,13 @@ import axios from 'axios'
 import {useEffect, useState} from "react"
 import Navbar from "./Navbar"
 
-function HomePage () {
+function PopulateCollection () {
     const [state, setState] = useState([]);
-    const [artist, setArtist] = useState("Nirvana")
+    const [artist, setArtist] = useState("The Knife")
     const [artists, setArtists] = useState([])
 
     useEffect(() =>{
-        fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&api_key=6abbbf59ff6505daf1ff65a7d5d92861&artist=${artist}&limit=3&format=json&raw=true`)
+        fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&api_key=6abbbf59ff6505daf1ff65a7d5d92861&artist=${artist}&limit=2&format=json&raw=true`)
         .then(response => {
             return response.json()
         })
@@ -17,7 +17,10 @@ function HomePage () {
             //axios.delete("https://ironrest.herokuapp.com/albuns/619cefd3cdf92e00177dd0fd")
             //console.log(response.topalbums.album)
             response.topalbums.album.map(album => {
-                //console.log(album)
+                fetch( `http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=6abbbf59ff6505daf1ff65a7d5d92861&artist=${artist}&album=${album.name}&format=json`)
+                .then(response => {return response.json()})
+                .then (data => axios.post("https://ironrest.herokuapp.com/albuns", data.album))
+                .catch (error => console.log(error))
                 //axios.post("https://ironrest.herokuapp.com/albuns", album)
             })
         })
@@ -48,10 +51,10 @@ function HomePage () {
 return (
     <div>
         <Navbar />
-        <h1>This is HomePage</h1>
+        <h1>This is Populate</h1>
     </div>
 )
 }
 
 
-export default HomePage;
+export default PopulateCollection;
