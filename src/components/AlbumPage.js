@@ -1,8 +1,14 @@
+import { useParams } from "react-router"
 import Navbar from "./Navbar"
 
 function AlbumPage () {
+    const {id} = useParams()
+    console.log(id)
     return (
-        <h1>This is the AlbumPage</h1>
+        <div>
+            <Navbar />
+            <h1>This is the AlbumPage</h1>
+        </div>
     )
 }
 
