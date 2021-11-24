@@ -3,12 +3,13 @@ import Navbar from "./Navbar"
 import axios from 'axios'
 import {useEffect, useState} from 'react'
 
+
 function AlbumPage () {
     const {id} = useParams()
     const [loaded, setLodead] = useState(false) // criar um state albuns e defini-lo como uma array vazia e a função setLoaded e alterar para true
     // criar um state albuns e defini-lo como uma array vazia e a função setAlbuns para altera-lo
     const [content, setContent] = useState([])
-    const [reviews, setReviews] = useState([])
+    const [topics, setTopics] = useState([])
     // useEffect para executar a função passada apenas na inicialização
         useEffect (() => {
             // usar comando get na coleção albuns do DB através da API com axios
@@ -24,17 +25,19 @@ function AlbumPage () {
             .then( () => {
                 setLodead(true) //enquanto o objeto estiver vazio não retorna nada pq é falso, a função setLoaded faz o programa aguardar os elementos do objeto para retornar
             })
-
-            const reviwes = axios.get(`https://ironrest.herokuapp.com/createCollection/reviews${id}`)
-
-            .then((response) => {
-                setReviews(response)
+            async function fetchTopics() {
+                try {
+                    const response = await axios.get
+                    ("https://ironrest.herokuapp.com/createCollection/reviews"
+                    );
+                    setTopics([...response.data]);
+                } catch (err) {
+                    console.error(err);
+                }
             }
-            )
 
-            
-        }
-        , [])
+            fetchTopics()
+        }, [])
     
     return (
         <div>
@@ -49,12 +52,21 @@ function AlbumPage () {
             
                 </div>
             }
+<<<<<<< HEAD
             {
                 reviews &&
                 <div>
                    <p></p> 
                 </div>
             }
+=======
+            <div>
+                
+                    <button type="button">Send your review</button>
+                    
+            </div>
+        
+>>>>>>> bff6ccb953bae2098757edca5b441662c207825f
 
         </div>
     )
