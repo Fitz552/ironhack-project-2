@@ -6,59 +6,104 @@ import {useEffect, useState} from 'react'
 
 function AlbumPage () {
     const {id} = useParams()
-    const [loaded, setLodead] = useState(false) // criar um state albuns e defini-lo como uma array vazia e a função setLoaded e alterar para true
-    // criar um state albuns e defini-lo como uma array vazia e a função setAlbuns para altera-lo
-    const [content, setContent] = useState([])
+    const [loaded, setLodead] = useState(false)
+    const [album, setAlbum] = useState([])
     const [topics, setTopics] = useState([])
-    // useEffect para executar a função passada apenas na inicialização
+
         useEffect (() => {
-            // usar comando get na coleção albuns do DB através da API com axios
+
             axios.get(`https://ironrest.herokuapp.com/albuns/${id}`)
-            //then recebe uma função que será executada após a conclusão da instrução anterior(no caso, axios.get)
             .then ((response) => {
-                // chamei a função setAlbuns para alterar o state de albuns para o valor recebido após a resposta da API
-                setContent(response)
-                
-    
+                setAlbum(response.data)
+                console.log(response.data)
             }
             )
             .then( () => {
-                setLodead(true) //enquanto o objeto estiver vazio não retorna nada pq é falso, a função setLoaded faz o programa aguardar os elementos do objeto para retornar
+                setLodead(true) 
             })
-            async function fetchTopics() {
-                try {
-                    const response = await axios.get
-                    ("https://ironrest.herokuapp.com/createCollection/reviews"
-                    );
-                    setTopics([...response.data]);
-                } catch (err) {
-                    console.error(err);
-                }
-            }
-
-            fetchTopics()
         }, [])
     
     return (
         <div>
-                <Navbar />
-            <h1>This is the AlbumPage</h1>
-            {
-                loaded && //condicinal
-                <div>
-                <img src={content.data.images[0].url}/>
-                <p>{content.data.name}</p>
-                <p>{content.data.artists[0].name}</p>
-            
+            <Navbar />
+            {loaded &&
+                <div className="row card m-2">
+                    <div className="col-12 bg-light mb-2">
+                        <p className = "h3">{album.name} by {album.artist}</p>
+                    </div>
+                    <div className="row">
+                        <div className = "col-4 justify-content-center">
+                            <div className="col-12">
+                                <p className="d-flex justify-content-center bg-light"><strong>{album.name}</strong></p>
+                                <div className="d-flex justify-content-center">
+                                    <img src={album.image[2]["#text"]} alt={album.name}/>
+                                </div>
+                            </div>
+                            <p className="col-12 bg-light d-flex justify-content-center mt-1">Artist</p>
+                            <p className="col">{album.artist}</p>
+                            <p className="col-12 bg-light d-flex justify-content-center mt-1">Tags</p>
+                            <div>
+                                {album.tags?
+                                    album.tags.tag.length>1?
+                                        album.tags.tag.map(specific => {
+                                            return(
+                                                <div>{specific.name}</div>
+                                            )
+                                        })
+                                        :
+                                        <div>{album.tags.tag.name}</div>
+                                    :
+                                    <span>No tags</span>
+                                }
+                            </div>
+
+                        </div>
+                        <div className="col">
+                            <div className="col-12">
+                                <p className="text-muted">Summary</p>
+                                <p>{album.wiki? album.wiki.summary: "No Info"}</p>
+                            </div>
+                            <div className="row">
+                                <div className="col">
+                                    <p className="text-muted">Tracks</p>
+                                    <ol>
+                                        {album.tracks? 
+                                            album.tracks.track.length>0?
+                                                album.tracks.track.map(track=>{
+                                                    return (
+                                                        <li>{track.name}</li>
+                                                    )
+                                                })
+                                                :
+                                                <li>{album.tracks.track.name}</li>
+                                            :
+                                            <div>No Info</div>
+                                        }
+                                    </ol>
+                                </div>
+                                <div className="col">
+                                    <p className="text-muted">Duration</p>
+                                    <ul>
+                                    {album.tracks?
+                                        album.tracks.track.length>0?
+                                            album.tracks.track.map(track=>{
+                                                return (
+                                                    <li style={{"list-style-type": "none"}}>{Math.floor(track.duration/60)}m {track.duration%60}s</li>
+                                                )
+                                            })
+                                            :
+                                            <li style={{"list-style-type": "none"}}>{Math.floor(album.tracks.track.duration/60)}:{album.tracks.track.duration%60}</li>
+                                        :
+                                        <div>No Info</div>}
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             }
-            <div>
-                
-                    <button type="button">Send your review</button>
-                    
-            </div>
-        
-
         </div>
     )
 }

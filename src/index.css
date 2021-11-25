@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.clean{
+  text-decoration: none;
+}
+
+.brand {
+  background-color: #61218f;
+}
+
+.logo {
+  font-family: "Gill Sans Extrabold", Helvetica, sans-serif;
+}
+
+.album-image {
+  width: 15em;
+  height: 15em;
+}
