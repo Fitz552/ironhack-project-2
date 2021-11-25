@@ -8,19 +8,15 @@ function AlbumPage () {
     const {id} = useParams()
     const [loaded, setLodead] = useState(false)
     const [album, setAlbum] = useState([])
-    const [topics, setTopics] = useState([])
 
         useEffect (() => {
 
             axios.get(`https://ironrest.herokuapp.com/albuns/${id}`)
             .then ((response) => {
                 setAlbum(response.data)
-                console.log(response.data)
+                setLodead(true) 
             }
             )
-            .then( () => {
-                setLodead(true) 
-            })
         }, [])
     
     return (

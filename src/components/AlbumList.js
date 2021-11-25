@@ -30,18 +30,26 @@ function AlbumList() {
         let aux = [...albuns]
         if (selectedTags.length>0) {
             aux = aux.filter(album => {
-                let keep = false
+                //let keep = false
+                let keep = true
                 if (album.tags) {                        
                     if (album.tags.tag.length>1) {
-                        for (let i=0; i<album.tags.tag.length; i++) {
+                        //for (let i=0; i<album.tags.tag.length; i++) {
+                        for (let i=0; i<selectedTags.length;i++){
                             console.log()
-                            keep = keep || selectedTags.includes(album.tags.tag[i].name)
+                            //keep = keep || selectedTags.includes(album.tags.tag[i].name)
+                            let names = album.tags.tag.map(entry => {return entry.name})
+                            keep = keep && names.includes(selectedTags[i])
                         }
                     }
                    else {
-                        keep = keep || aux.includes(album.tags.tag.name)
+                        //keep = keep || aux.includes(album.tags.tag.name)
+                        for (let i=0; i<selectedTags.length;i++){
+                            keep = keep && album.tags.tag.name.includes(selectedTags[i])
+                        }
                     }
                 }
+                else {keep=false}
                 return keep
                 })
             }
@@ -58,6 +66,7 @@ function AlbumList() {
                     return (name.includes(search.toLowerCase()) || artist.includes(search.toLowerCase()))
                 })
             }
+
         setFilteredAlbuns(aux)
     }, [selectedTags, search])
     
