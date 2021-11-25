@@ -3,7 +3,7 @@ import {useEffect, useState} from "react"
 import Navbar from "./Navbar"
 
 function PopulateCollection () {
-    const [artist, setArtist] = useState("Frank Sinatra")
+    const [artist, setArtist] = useState("GA31")
     const [artists, setArtists] = useState([])
 
     useEffect(() =>{
