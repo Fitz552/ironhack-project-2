@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios";
 
 
-function createReviews() {
+function CreateTopic() {
     const navigate = useNavigate()
-    const [reviews, setReviews] = useState({
+    const [topic, setTopic] = useState({
         title:"",
         body:"",
     });
@@ -21,32 +21,41 @@ function createReviews() {
         event.preventDefault();
 
         try{
-            await axios.post("`https://ironrest.herokuapp.com/reviews", {topic})
-
-
+            await axios.post(/*"https://ironrest.herokuapp.com/reviews", {topic}*/)
+            navigate("/");
         } catch(error){
             console.error(error.response.data)
         }
-
     }
 
 
     return (
         <form>
-            <label htmlFor="comment">Comment:</label>
+            <div>
+            <CreateTopic />
+            <EditTopic />
+            </div>
+            <label htmlFor="title">Title:</label>
             <input 
-                id="comment" 
-                value={reviews.comment}
+                id="title" 
+                value={topic.title}
                 type="text"
-                onChange
-                name="comment"
+                onChange={handleChange}
+                name="title"
             />
             <label htmlFor="body">Make your comment</label>
             <textarea
                 id="body"
                 placeholder="Sei la"
+                value={topic.body}
+                type="text"
+                onChange={handleChange}
+                name="body"
                 />
+                <button type="submit" onClick={handleSubmit}>Submit review</button>
         </form>
     )
 }
 
+
+export default CreateTopic

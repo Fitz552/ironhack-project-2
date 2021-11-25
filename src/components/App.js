@@ -5,6 +5,10 @@ import HomePage from "./Homepage";
 import DeleteCollection from "./DeleteCollection";
 import PopulateCollection from "./PopulateCollection";
 import RemoveDuplicates from "./RemoveDuplicates";
+import Home from "./Home";
+import CreateTopic from "./CreateTopic";
+import EditTopic from "./EditTopic";
+
 
 function App() {
   return (
@@ -16,6 +20,10 @@ function App() {
         <Route exact path = "/delete" element={<DeleteCollection/>}/>
         <Route exact path = "/populate" element={<PopulateCollection/>}/>
         <Route exact path = "/remove" element={<RemoveDuplicates/>}/>
+        <Route path = "/home" element={<Home />} />
+        <Route path ="/create-topic" element={<CreateTopic />} />
+        <Route path="/edit-topic/:id" element={<EditTopic />} />
+
       </Routes>
     </div>
   );
