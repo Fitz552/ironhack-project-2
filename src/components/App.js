@@ -1,6 +1,7 @@
 import {Route, Routes} from "react-router-dom"
 import AlbumList from "./AlbumList";
 import AlbumPage from "./AlbumPage";
+import AlbumPageBackup from "./AlbumPageBackup";
 import HomePage from "./Homepage";
 import DeleteCollection from "./DeleteCollection";
 import PopulateCollection from "./PopulateCollection";

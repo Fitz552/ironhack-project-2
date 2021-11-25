@@ -112,17 +112,17 @@ function HomePage () {
 
             <div className="col-10">
                 <p><strong>Or by selecting a genre</strong></p>
-                <div className="col">
+                <div className="col align-items-center">
                     {tags.map((tag, index) =>{
                         if (index <numberTags){
                             return(
-                                <button className="col-md-2 col-sm-4 m-2 btn btn-outline-secondary" key={tag} onClick={onTag}>{tag}</button>
+                                <button className="col-md-2 col-sm-4 m-2 btn btn-sm btn-outline-secondary" key={tag} onClick={onTag}>{tag}</button>
                             )
                         }
                     })}
                 </div>
                 <div className="m-2 d-flex justify-content-center">
-                    <button className="col-9 btn btn-secondary" onClick={onLoadMore}>Load More</button>
+                    <button className="col-9 btn" onClick={onLoadMore}>Load More</button>
                 </div>
             </div>
         </div>
