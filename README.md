@@ -1,7 +1,7 @@
 # Audiosurfer
 This is a 1-week project done during IronHack Bootcamp to practice React and CRUD API calls.
 
->Access it [here](https://fitz552.github.io/wizard-shooter/)
+>Access it [here](https://audiosurfer.netlify.app/)
 
 ## About the App
 Audiosurfer is a repository of music albums and reviews.
@@ -19,5 +19,5 @@ Audiosurfer is a repository of music albums and reviews.
 
 ## IronHack
 
-- Deployed app [link](https://fitz552.github.io/wizard-shooter/)
+- Deployed app [link](https://audiosurfer.netlify.app/)
 - Presentation [link](https://docs.google.com/presentation/d/1f6KZOAQbaHc2opn7Utvzz10aALow47Y_48NhELgFjEY/edit?usp=sharing)
