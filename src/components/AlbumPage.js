@@ -24,20 +24,20 @@ function AlbumPage () {
             <Navbar />
             {loaded &&
                 <div className="row card m-2">
-                    <div className="col-12 bg-light mb-2">
+                    <div className="col-12 light mb-2">
                         <p className = "h3">{album.name} by {album.artist}</p>
                     </div>
                     <div className="row">
-                        <div className = "col-4 justify-content-center">
+                        <div className = "col-md-4 col-sm-6 justify-content-center">
                             <div className="col-12">
-                                <p className="d-flex justify-content-center bg-light"><strong>{album.name}</strong></p>
+                                <p className="d-flex justify-content-center light"><strong>{album.name}</strong></p>
                                 <div className="d-flex justify-content-center">
                                     <img src={album.image[2]["#text"]} alt={album.name}/>
                                 </div>
                             </div>
-                            <p className="col-12 bg-light d-flex justify-content-center mt-1">Artist</p>
+                            <p className="col-12 light d-flex justify-content-center mt-1">Artist</p>
                             <p className="col">{album.artist}</p>
-                            <p className="col-12 bg-light d-flex justify-content-center mt-1">Tags</p>
+                            <p className="col-12 light d-flex justify-content-center mt-1">Tags</p>
                             <div>
                                 {album.tags?
                                     album.tags.tag.length>1?
@@ -56,12 +56,12 @@ function AlbumPage () {
                         </div>
                         <div className="col">
                             <div className="col-12">
-                                <p className="text-muted">Summary</p>
-                                <p>{album.wiki? album.wiki.summary: "No Info"}</p>
+                                <p className="text-muted light">Summary</p>
+                                <p dangerouslySetInnerHTML={{ __html: album.wiki? album.wiki.summary: "No Info"}}></p>
                             </div>
                             <div className="row">
                                 <div className="col">
-                                    <p className="text-muted">Tracks</p>
+                                    <p className="text-muted light">Tracks</p>
                                     <ol>
                                         {album.tracks? 
                                             album.tracks.track.length>0?
@@ -78,7 +78,7 @@ function AlbumPage () {
                                     </ol>
                                 </div>
                                 <div className="col">
-                                    <p className="text-muted">Duration</p>
+                                    <p className="text-muted light">Duration</p>
                                     <ul>
                                     {album.tracks?
                                         album.tracks.track.length>0?
