@@ -103,16 +103,16 @@ function HomePage () {
             <div className="col-10 my-2">
                 <div className="row d-flex align-items-center my-2">
                     <label><strong>Start by searching an album or artist</strong></label>
-                    <form className="row" onSubmit={onSearch}>
+                    <form  className = "d-flex flex-column" onSubmit={onSearch}>
                         <input className="col form-control my-2" type="text" placeholder= "Search by album or artist" onChange={onChange} required/>
-                        <button className="col-1 btn">Search</button>
+                        <button className="col-12 btn mx-auto border border-dark">Search</button>
                     </form>
                 </div>
             </div>
 
             <div className="col-10">
                 <p><strong>Or by selecting a genre</strong></p>
-                <div className="col align-items-center">
+                <div className="row align-items-center justify-content-center">
                     {tags.map((tag, index) =>{
                         if (index <numberTags){
                             return(
@@ -122,7 +122,7 @@ function HomePage () {
                     })}
                 </div>
                 <div className="m-2 d-flex justify-content-center">
-                    <button className="col-9 btn" onClick={onLoadMore}>Load More</button>
+                    <button className="col-9 mx-auto btn" onClick={onLoadMore}>Load More</button>
                 </div>
             </div>
         </div>
