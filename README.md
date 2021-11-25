@@ -11,11 +11,11 @@ Audiosurfer is a repository of music albums and reviews.
 
 >This is a free software, product of a study about webdev. Feel free to contribute in any way you want
 
--Fork it
--Create your feature branch (git checkout -b feature/fooBar)
--Commit your changes (git commit -am 'Add some fooBar')
--Push to the branch (git push origin feature/fooBar)
--Create a new Pull Request
+- Fork it
+- Create your feature branch (git checkout -b feature/fooBar)
+- Commit your changes (git commit -am 'Add some fooBar')
+- Push to the branch (git push origin feature/fooBar)
+- Create a new Pull Request
 
 ## IronHack
 
