@@ -1,11 +1,8 @@
 import axios from 'axios'
-import {useEffect, useState} from "react"
+import {useEffect} from "react"
 import Navbar from "./Navbar"
 
 function RemoveDuplicates () {
-    const [state, setState] = useState([]);
-    const [artist, setArtist] = useState("Nirvana")
-    const [artists, setArtists] = useState([])
 
     useEffect(() =>{
 
@@ -27,7 +24,7 @@ function RemoveDuplicates () {
 return (
     <div>
         <Navbar />
-        <h1>This is DeleteCollection</h1>
+        <h1>This is Remove Duplicates</h1>
     </div>
 )
 }
