@@ -6,10 +6,10 @@ function DeleteCollection () {
 
     useEffect(() =>{
 
-        axios.get("https://ironrest.herokuapp.com/albuns")
+        axios.get("https://ironrest.herokuapp.com/reviews")
         .then(response => {
             response.data.map(response => {
-                //axios.delete(`https://ironrest.herokuapp.com/albuns/${response._id}`)
+                //axios.delete(`https://ironrest.herokuapp.com/reviews/${response._id}`)
                 //.then(response => console.log(response))
             })
         })
