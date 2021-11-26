@@ -13,6 +13,7 @@ function AlbumPageBackup () {
     const [newReview, setNewReview] = useState({grade: 1, review:""})
     const [update, setUpdate] = useState("");
     const [updatedReview, setUpdatedReview] = useState({});
+    const [reviewAverage, setReviewAverage] = useState(0);
 
         useEffect (() => {
 
@@ -34,6 +35,17 @@ function AlbumPageBackup () {
             .catch(error => console.log(error))    
 
         }, [id])
+
+        useEffect(() => {
+            let aux = [...reviews]
+            let average = 0
+            if (aux.length>0) {
+                average = aux.reduce((a, b) => {
+                    return (a+parseFloat(b.grade))
+                }, 0)/aux.length
+            }
+            setReviewAverage((Math.round(average * 10) / 10).toFixed(1))
+        }, [reviews])
 
 
         function onDelete(event) {
@@ -114,9 +126,14 @@ function AlbumPageBackup () {
         <div>
             <Navbar />
             {loaded &&
-                <div className="row card m-2">
-                    <div className="col light mb-2">
-                        <p className = "h3">{album.name} by {album.artist}</p>
+                <div className="row card m-1">
+                    <div className="col d-flex justify-content-between light mb-2">
+                        <div>
+                            <p className = "h3">{album.name} by {album.artist}</p>
+                        </div>
+                        <div>
+                            <p className="h3">Rating: {reviewAverage} </p>
+                        </div>
                     </div>
                     <div className="row">
                         <div className = "col-md-4 col-sm-6 justify-content-center">
@@ -200,7 +217,7 @@ function AlbumPageBackup () {
                             if (!update.includes(review._id)) {
                                 return (
                                     <div className = "col-10" key={review._id}>
-                                        <div class="row d-flex justify-content-between align-items-center">     
+                                        <div className="row d-flex justify-content-between align-items-center">     
                                             <div className="col d-flex justify-content-start">
                                                 <p className="text-muted mx-2">Rating </p>
                                                 <p>{review.grade}</p>
