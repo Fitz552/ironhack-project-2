@@ -6,7 +6,7 @@ import rate from "../images/star.png"
 import { useNavigate } from "react-router-dom";
 import {useState, useEffect} from "react"
 import axios from "axios"
-import spinner from "../images/spinner.gif"
+
 
 function HomePage () {
     let nav = 10
@@ -14,7 +14,7 @@ function HomePage () {
     const [search, setSearch] = useState("")
     const [tags, setTags] = useState([])
     const [numberTags, setNumberTags] = useState(nav)
-    const [loading, setLoading] = useState(true)
+
 
     useEffect(() => {
         //Checks most recurrent tags to be displayed 
@@ -43,7 +43,6 @@ function HomePage () {
                     }
                 }
             }
-            setLoading(false)
             return album
         })
         let data= Object.keys(displayTags).sort(function(a,b){return displayTags[b]-displayTags[a]})
@@ -117,12 +116,7 @@ function HomePage () {
             <div className="col-10">
                 <p><strong>Or by selecting a genre</strong></p>
                 <div className="row align-items-center justify-content-center">
-                    {loading?
-                    <div>
-                        <img src={spinner} alt="Loadding Spinner"/>
-                    </div>
-                    :
-                    
+                    {                 
                     tags.map((tag, index) =>{
                         if (index <numberTags){
                             return(
