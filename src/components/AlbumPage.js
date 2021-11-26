@@ -17,7 +17,8 @@ function AlbumPage () {
                 setLodead(true) 
             }
             )
-        }, [])
+            .catch(error => console.log(error))
+        }, [id])
     
     return (
         <div>

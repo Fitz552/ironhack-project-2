@@ -29,6 +29,7 @@ function HomePage () {
                         else {
                             displayTags[tag.name] = 1
                         }
+                    return tag
                     })
                 }
                 else {
@@ -40,11 +41,12 @@ function HomePage () {
                     }
                 }
             }
+            return album
         })
         let data= Object.keys(displayTags).sort(function(a,b){return displayTags[b]-displayTags[a]})
-        console.log(data)
         setTags(data)
-    })
+        })
+        .catch(error => console.log(error))
     }, [])
 
     function onSearch(event) {
@@ -54,7 +56,6 @@ function HomePage () {
 
     function onChange(event) {
         setSearch(event.target.value)
-        console.log(search)
     }
 
     function onTag(event) {
@@ -118,6 +119,9 @@ function HomePage () {
                             return(
                                 <button className="col-md-2 col-sm-4 m-2 btn btn-sm btn-outline-secondary" key={tag} onClick={onTag}>{tag}</button>
                             )
+                        }
+                        else {
+                            return (<span key={tag}></span>)
                         }
                     })}
                 </div>
