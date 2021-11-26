@@ -154,7 +154,7 @@ function AlbumList() {
                                 }
                             }
                             else {
-                                return(<span></span>)
+                                return(<span key={singleTag}></span>)
                             }
                         })}
                     </div>
@@ -166,11 +166,11 @@ function AlbumList() {
                     filteredAlbuns.map((album, index)=> {
                         if (index<pagination) {
                             return(
-                                <AlbumCard album={album}/>
+                                <AlbumCard album={album} key={album.name}/>
                             )
                         }
                         else{
-                            return(<span></span>)
+                            return(<span key={index}></span>)
                         }
                     })
                 }

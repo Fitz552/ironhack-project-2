@@ -134,11 +134,11 @@ function AlbumPageBackup () {
                                     album.tags.tag.length>1?
                                         album.tags.tag.map(specific => {
                                             return(
-                                                <div>{specific.name}</div>
+                                                <div key={specific.name}>{specific.name}</div>
                                             )
                                         })
                                         :
-                                        <div>{album.tags.tag.name}</div>
+                                        <div key={album.tags.tag.name}>{album.tags.tag.name}</div>
                                     :
                                     <span>No tags</span>
                                 }
@@ -158,11 +158,11 @@ function AlbumPageBackup () {
                                             album.tracks.track.length>0?
                                                 album.tracks.track.map(track=>{
                                                     return (
-                                                        <li>{track.name}</li>
+                                                        <li key={track.name}>{track.name}</li>
                                                     )
                                                 })
                                                 :
-                                                <li>{album.tracks.track.name}</li>
+                                                <li key={album.tracks.track.name}>{album.tracks.track.name}</li>
                                             :
                                             <div>No Info</div>
                                         }
@@ -175,11 +175,11 @@ function AlbumPageBackup () {
                                         album.tracks.track.length>0?
                                             album.tracks.track.map(track=>{
                                                 return (
-                                                    <li style={{"list-style-type": "none"}}>{Math.floor(track.duration/60)}m {track.duration%60}s</li>
+                                                    <li style={{"listStyleType": "none"}} key={track.name}>{Math.floor(track.duration/60)}m {track.duration%60}s</li>
                                                 )
                                             })
                                             :
-                                            <li style={{"list-style-type": "none"}}>{Math.floor(album.tracks.track.duration/60)}:{album.tracks.track.duration%60}</li>
+                                            <li style={{"listStyleType": "none"}} key={album.tracks.track.name}>{Math.floor(album.tracks.track.duration/60)}m{album.tracks.track.duration%60}s</li>
                                         :
                                         <div>No Info</div>}
                                     </ul>
