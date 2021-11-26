@@ -4,6 +4,7 @@ import axios from "axios"
 import AlbumCard from "./AlbumCard"
 import {useLocation} from "react-router-dom"
 import qs from "qs"
+import spinner from "../images/spinner.gif"
 
 function AlbumList() {
     const display = 15 //number of cards initially displayed and added each time you click "show more"
@@ -14,6 +15,7 @@ function AlbumList() {
     const [pagination, setPagination] = useState(display) //number of cards shown
     const [tag, setTags] = useState([]) //tags that are displayed on the screen
     const [selectedTags, setSelectedTags] = useState([]) //tags that are seleceted
+    const [loading, setLoading] = useState(true)
 
 
 
@@ -22,6 +24,7 @@ function AlbumList() {
         axios.get("https://ironrest.herokuapp.com/albuns")
         .then((response)=> {
             setAlbuns(response.data)
+            setLoading(false)
             if (qs.parse(location.search)["?search"]) {
                 setSearch(qs.parse(location.search)["?search"])
             }
@@ -140,7 +143,8 @@ function AlbumList() {
                 <div className="col-10">
                     <input className="form-control my-2" type="text" placeholder= "Search by album or artist" value={search} onChange={onChange}/>
                     <div className="row d-flex justify-content-center">
-                        {tag.map((singleTag, index) => {
+                        {!loading &&                        
+                        tag.map((singleTag, index) => {
                             if (index < 10) {
                                 if (selectedTags.includes(singleTag)) {
                                     return (
@@ -162,7 +166,11 @@ function AlbumList() {
             </div>
 
             <div className="row m-2 d-flex justify-content-center">
-                { 
+                {loading?
+                    <div className="d-flex justify-content-center">
+                        <img src={spinner} alt="loading gif"/>
+                    </div>
+                :
                     filteredAlbuns.map((album, index)=> {
                         if (index<pagination) {
                             return(

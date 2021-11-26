@@ -1,6 +1,6 @@
 import {Route, Routes} from "react-router-dom"
 import AlbumList from "./AlbumList";
-import AlbumPageBackup from "./AlbumPageBackup";
+import AlbumPage from "./AlbumPage";
 import HomePage from "./Homepage";
 //import DeleteCollection from "../../utils/DeleteCollection";
 //import PopulateCollection from "../../utils/PopulateCollection";
@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route exact path = "/" element={<HomePage/>}/>
         <Route exact path = "/albuns" element={<AlbumList/>}/>
-        <Route exact path = "/albuns/:id" element={<AlbumPageBackup/>}/>
+        <Route exact path = "/albuns/:id" element={<AlbumPage/>}/>
         {/*
         <Route exact path = "/delete" element={<DeleteCollection/>}/>
         <Route exact path = "/populate" element={<PopulateCollection/>}/>
