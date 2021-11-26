@@ -31,7 +31,7 @@ function AlbumList() {
         })
         .catch(error => console.log(error))
         
-    }, [])
+    }, [location.search])
 
 
     useEffect(()=>{
@@ -43,7 +43,6 @@ function AlbumList() {
                 if (album.tags) {                        
                     if (album.tags.tag.length>1) {
                         for (let i=0; i<selectedTags.length;i++){
-                            console.log()
                             let names = album.tags.tag.map(entry => {return entry.name})
                             keep = keep && names.includes(selectedTags[i])
                         }
@@ -58,7 +57,6 @@ function AlbumList() {
                 return keep
                 })
             }
-            console.log(search)
             if (search !=="") {
                 aux = aux.filter(album => {
                     let name = ""
@@ -90,6 +88,7 @@ function AlbumList() {
                         else {
                             displayTags[tag.name] = 1
                         }
+                    return (tag)
                     })
                 }
                 else {
@@ -101,9 +100,9 @@ function AlbumList() {
                     }
                 }
             }
+            return album
         })
         let data= Object.keys(displayTags).sort(function(a,b){return displayTags[b]-displayTags[a]})
-        console.log(data)
         setTags(data)
     }, [filteredAlbuns])
 
@@ -154,6 +153,9 @@ function AlbumList() {
                                     )
                                 }
                             }
+                            else {
+                                return(<span key={singleTag}></span>)
+                            }
                         })}
                     </div>
                 </div>
@@ -164,8 +166,11 @@ function AlbumList() {
                     filteredAlbuns.map((album, index)=> {
                         if (index<pagination) {
                             return(
-                                <AlbumCard album={album}/>
+                                <AlbumCard album={album} key={album.name}/>
                             )
+                        }
+                        else{
+                            return(<span key={index}></span>)
                         }
                     })
                 }

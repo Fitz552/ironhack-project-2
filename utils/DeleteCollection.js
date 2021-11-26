@@ -11,6 +11,7 @@ function DeleteCollection () {
             response.data.map(response => {
                 //axios.delete(`https://ironrest.herokuapp.com/reviews/${response._id}`)
                 //.then(response => console.log(response))
+                return response
             })
         })
         .catch (error => console.log(error))
