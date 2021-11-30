@@ -6,12 +6,14 @@ import rate from "../images/star.png"
 import { useNavigate } from "react-router-dom";
 import {useState, useEffect} from "react"
 import axios from "axios"
+import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 
 
 function HomePage () {
     let nav = 20
     let navigate = useNavigate();
-    const [search, setSearch] = useState("")
+    //const [search, setSearch] = useState("")
+    const [albuns, setAlbuns] = useState([])
     const [tags, setTags] = useState([])
     const [numberTags, setNumberTags] = useState(nav)
 
@@ -21,6 +23,7 @@ function HomePage () {
         let displayTags = {}
         axios.get("https://ironrest.herokuapp.com/albuns")
         .then (response => {
+        setAlbuns(response.data)
         response.data.map(album => {
             if (album.tags) {
                 if (album.tags.tag.length > 1) {
@@ -51,14 +54,13 @@ function HomePage () {
         .catch(error => console.log(error))
     }, [])
 
-    function onSearch(event) {
-        event.preventDefault()
-        navigate(`/albuns?search=${search}`)
+    function onSearch(item) {
+        navigate(`/albuns?search=${item.name}`)
     }
 
-    function onChange(event) {
-        setSearch(event.target.value)
-    }
+    //function onChange(event) {
+      //  setSearch(event.target.value)
+    //}
 
     function onTag(event) {
         navigate(`/albuns?tag=${event.target.innerHTML}`)
@@ -67,6 +69,7 @@ function HomePage () {
     function onLoadMore() {
         setNumberTags(numberTags+nav)
     }
+
 
     return (
     <div>
@@ -80,10 +83,18 @@ function HomePage () {
                 <div className="col-10 mx-auto my-2">
                     <div className="row d-flex align-items-center my-2">
                         <label className="h4"><strong>Start by searching an album or artist</strong></label>
-                        <form  className = "d-flex flex-column" onSubmit={onSearch}>
-                            <input className="col form-control my-2" type="text" placeholder= "Search by album or artist" onChange={onChange} required/>
-                            <button className="col-12 btn mx-auto border border-dark">Search</button>
-                        </form>
+                        <ReactSearchAutocomplete 
+                            items={albuns}
+                            onSelect = {onSearch}
+                            fuseOptions = {{
+                                keys: [
+                                  "name",
+                                  "artist"
+                                ]
+                            }}
+                            resultStringKeyName = {"name"}
+                        />
+
                     </div>
                 </div>
             </div>
