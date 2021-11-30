@@ -135,8 +135,8 @@ function AlbumPage () {
                         </div>
                         <div className="col d-flex">
                             <div className="row ms-auto my-auto">
-                                <img src={star} alt="classification star" className="small-image col"/>
-                                <p className="h3 text-white col">{reviewAverage} </p>
+                                <img src={star} alt="classification star my-auto" className="small-image col"/>
+                                <p className="h3 text-white col my-auto">{reviewAverage} </p>
                             </div>
                         </div>
                     </div>
