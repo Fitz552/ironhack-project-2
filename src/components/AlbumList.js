@@ -148,12 +148,12 @@ function AlbumList() {
                             if (index < 10) {
                                 if (selectedTags.includes(singleTag)) {
                                     return (
-                                        <button className="col-md-2 col-sm-4 m-1 btn btn-secondary" onClick={onTagClick} key={singleTag}>{singleTag}</button>
+                                        <button className="col-md-2 col-4 m-1 btn btn-secondary" onClick={onTagClick} key={singleTag}>{singleTag}</button>
                                     )
                                 }
                                 else {
                                     return (
-                                        <button className="col-md-2 col-sm-4 m-1 btn btn-outline-secondary" onClick={onTagClick} key={singleTag}>{singleTag}</button>
+                                        <button className="col-md-2 col-4 m-1 btn btn-outline-secondary" onClick={onTagClick} key={singleTag}>{singleTag}</button>
                                     )
                                 }
                             }

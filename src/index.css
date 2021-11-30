@@ -29,20 +29,29 @@ code {
   width: 10em;
 }
 
-.background-image {
-  height:40em;
+.small-section {
+  height: 50vh;
+}
+
+.homepage-background-image {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-image: url("./images/Studio.png");
+  background-image: url("./images/headphone.png");
+  height: 80vh;
 }
 
 .home-image {
-  width: 5em;
-  height: 5em;
+  width: 6em;
+  height: 6em;
 }
 
 .album-image {
   width: 15em;
   height: 15em;
+}
+
+.small-image {
+  width: 2em;
+  height: 2em;
 }
