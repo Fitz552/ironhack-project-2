@@ -4,6 +4,7 @@ import axios from 'axios'
 import {useEffect, useState} from 'react'
 import Form from "./Form"
 import spinner from "../images/spinner.gif"
+import star from "../images/goldstar.png"
 
 
 function AlbumPage () {
@@ -128,25 +129,28 @@ function AlbumPage () {
             <Navbar />
             {loaded ? 
                 <div className="row card m-1">
-                    <div className="col d-flex justify-content-between light mb-2">
-                        <div>
-                            <p className = "h3">{album.name} by {album.artist}</p>
+                    <div className="col d-flex justify-content-between brand mb-2">
+                        <div className="col">
+                            <p className = "h3 text-white">{album.name} by {album.artist}</p>
                         </div>
-                        <div>
-                            <p className="h3">Rating: {reviewAverage} </p>
+                        <div className="col d-flex">
+                            <div className="row ms-auto my-auto">
+                                <img src={star} alt="classification star" className="small-image col"/>
+                                <p className="h3 text-white col">{reviewAverage} </p>
+                            </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className = "col-md-4 col-sm-6 justify-content-center">
                             <div className="col-12">
-                                <p className="d-flex justify-content-center light"><strong>{album.name}</strong></p>
+                                <p className="text-center light h5">{album.name}</p>
                                 <div className="d-flex justify-content-center">
-                                    <img src={album.image[2]["#text"]} alt={album.name}/>
+                                    <img className="album-image" src={album.image[2]["#text"]} alt={album.name}/>
                                 </div>
                             </div>
-                            <p className="col-12 light d-flex justify-content-center mt-1">Artist</p>
+                            <p className="col-12 light text-center mt-1">Artist</p>
                             <p className="col">{album.artist}</p>
-                            <p className="col-12 light d-flex justify-content-center mt-1">Tags</p>
+                            <p className="col-12 light text-center mt-1">Tags</p>
                             <div>
                                 {album.tags?
                                     album.tags.tag.length>1?
@@ -165,45 +169,40 @@ function AlbumPage () {
                         </div>
                         <div className="col">
                             <div className="col-12">
-                                <p className="text-muted light">Summary</p>
+                                <p className="light">Summary</p>
                                 <p dangerouslySetInnerHTML={{ __html: album.wiki? album.wiki.summary: "No Info"}}></p>
                             </div>
-                            <div className="row">
-                                <div className="col">
-                                    <p className="text-muted light">Tracks</p>
-                                    <ol>
-                                        {album.tracks? 
-                                            album.tracks.track.length>0?
-                                                album.tracks.track.map(track=>{
-                                                    return (
-                                                        <li key={track.name}>{track.name}</li>
-                                                    )
-                                                })
-                                                :
-                                                <li key={album.tracks.track.name}>{album.tracks.track.name}</li>
-                                            :
-                                            <div>No Info</div>
-                                        }
-                                    </ol>
-                                </div>
-                                <div className="col">
-                                    <p className="text-muted light">Duration</p>
-                                    <ul>
-                                    {album.tracks?
-                                        album.tracks.track.length>0?
+                            {album.tracks? 
+                                <table className="table table-borderless">
+                                    <thead>
+                                        <th scope = "col" className="light">
+                                            Track
+                                        </th>
+                                        <th scope = "col" className="light">
+                                            Duration
+                                        </th>
+                                    </thead>
+                                    <tbody>
+                                        {album.tracks.track.length>0?
                                             album.tracks.track.map(track=>{
                                                 return (
-                                                    <li style={{"listStyleType": "none"}} key={track.name}>{Math.floor(track.duration/60)}m {track.duration%60}s</li>
+                                                    <tr key={track.name}>
+                                                        <td>{track.name}</td>
+                                                        <td>{Math.floor(track.duration/60)}m {track.duration%60}s</td>
+                                                    </tr>
                                                 )
                                             })
                                             :
-                                            <li style={{"listStyleType": "none"}} key={album.tracks.track.name}>{Math.floor(album.tracks.track.duration/60)}m{album.tracks.track.duration%60}s</li>
-                                        :
-                                        <div>No Info</div>}
-                                    </ul>
-                                </div>
-
-                            </div>
+                                            <tr key={album.tracks.track.name}>
+                                                <td>{album.tracks.track.name}</td>
+                                                <td>{Math.floor(album.tracks.track.duration/60)}m{album.tracks.track.duration%60}s</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                :
+                                <div>No Info</div>
+                            }
                         </div>
                     </div>
 
@@ -216,9 +215,9 @@ function AlbumPage () {
                 </div>
             }
             <div>
-                <p className="col light d-flex justify-content-center mx-2">Reviews</p>
+                <p className="col d-flex justify-content-center mx-2 h4">Reviews</p>
             </div>
-            <div className="row d-flex justify-content-center align-items-center">
+            <div className="row d-flex justify-content-center align-items-center bg-light">
                     {
                         reviews.map( review => {
                             if (!update.includes(review._id)) {
