@@ -4,7 +4,6 @@ import axios from "axios"
 import AlbumCard from "./AlbumCard"
 import {useLocation} from "react-router-dom"
 import qs from "qs"
-import spinner from "../images/spinner.gif"
 
 function AlbumList() {
     const display = 15 //number of cards initially displayed and added each time you click "show more"
@@ -168,8 +167,9 @@ function AlbumList() {
             <div className="row m-2 d-flex justify-content-center">
                 {loading?
                     <div className="d-flex justify-content-center">
-                        <img src={spinner} alt="loading gif"/>
+                        <div className="spinner-border d-flex justify-content-center" role="status">
                     </div>
+                </div>
                 :
                     filteredAlbuns.map((album, index)=> {
                         if (index<pagination) {

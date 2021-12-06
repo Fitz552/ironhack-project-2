@@ -3,8 +3,8 @@ import Navbar from "./Navbar"
 import axios from 'axios'
 import {useEffect, useState} from 'react'
 import Form from "./Form"
-import spinner from "../images/spinner.gif"
-import star from "../images/goldstar.png"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 
 function AlbumPage () {
@@ -135,7 +135,8 @@ function AlbumPage () {
                         </div>
                         <div className="col d-flex">
                             <div className="row ms-auto my-auto">
-                                <img src={star} alt="classification star my-auto" className="small-image col"/>
+                                <FontAwesomeIcon icon={faStar} size="3x" color="gold" />
+                                
                                 <p className="h3 text-white col my-auto">{reviewAverage} </p>
                             </div>
                         </div>
@@ -209,9 +210,9 @@ function AlbumPage () {
                 </div>
 
             :
-
                 <div className="d-flex justify-content-center">
-                    <img src={spinner} alt="loading spinner"/>
+                    <div className="spinner-border d-flex justify-content-center" role="status">
+                    </div>
                 </div>
             }
             <div>
